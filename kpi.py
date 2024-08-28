@@ -6,8 +6,11 @@ import plotly.graph_objects as go
 def display_kpi():
     st.header("Indicadores Clave de Desempeño (KPI)")
 
-    # Cargar datos de feed.csv
-    feed_df = pd.read_csv('data/feed.csv')
+    # Acceder a la ruta del archivo desde secrets.toml
+    feed_path = st.secrets["data_paths"]["feed_csv"]
+
+    # Cargar el archivo CSV
+    feed_df = pd.read_csv(feed_path)
 
     # Procesar la columna call_date
     feed_df['call_date'] = pd.to_datetime(feed_df['call_date'], format='%Y-%m-%d %H:%M:%S')

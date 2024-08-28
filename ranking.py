@@ -4,8 +4,11 @@ import streamlit as st
 def display_ranking():
     st.header("Ranking de Ventas por Vendedor")
 
-    # Cargar datos de feed.csv
-    feed_df = pd.read_csv('data/feed.csv')
+    # Acceder a la ruta del archivo desde secrets.toml
+    feed_path = st.secrets["data_paths"]["feed_csv"]
+
+    # Cargar el archivo CSV
+    feed_df = pd.read_csv(feed_path)
 
     # Filtrar las ventas (DESCRIPCION = 'VENTA CON TITULAR')
     ventas_df = feed_df[feed_df['DESCRIPCION'] == 'VENTA CON TITULAR']
